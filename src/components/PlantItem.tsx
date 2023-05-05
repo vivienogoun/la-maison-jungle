@@ -1,15 +1,22 @@
-import CareScale from "./CareScale"
+import CareScale from './CareScale'
 import '../styles/PlantItem.css'
 
-function PlantItem({ name, cover, id, light, water }) {
-  return (
-    <li className="lmj-plant-item">
-      <img src={ cover } alt="Une plante" className="lmj-plant-item-cover"/>
-      <h3>{ name }</h3>
-			<CareScale careType='water' scaleValue={ water } />
-			<CareScale careType='light' scaleValue={ light } />
-    </li>
-  )
+function handleClick(plantName) {
+	alert(`Vous voulez acheter 1 ${plantName}? Très bon choix 🌱✨`)
+}
+
+function PlantItem({ cover, name, water, light, price }) {
+	return (
+		<li className='lmj-plant-item' onClick={() => handleClick(name)}>
+			<span className='lmj-plant-item-price'>{price}€</span>
+			<img className='lmj-plant-item-cover' src={cover} alt={`${name} cover`} />
+			{name}
+			<div>
+				<CareScale careType='water' scaleValue={water} />
+				<CareScale careType='light' scaleValue={light} />
+			</div>
+		</li>
+	)
 }
 
 export default PlantItem
